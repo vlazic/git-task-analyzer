@@ -7,6 +7,7 @@ import {
 } from "./display/display.js";
 import { getUserCommits } from "./git/gitOperations.js";
 import CLIOptions from "./cli.js";
+import { ACTIONS } from "./constants.js";
 
 async function main() {
   try {
@@ -26,7 +27,7 @@ async function main() {
       const { nextAction } = await getNextAction();
 
       switch (nextAction) {
-        case "Continue grouping":
+        case ACTIONS.GROUP:
           const { commitsToMerge } = await getCommitsToMerge(remainingCommits);
           const selectedCommits = remainingCommits.filter((commit) =>
             commitsToMerge.includes(`${commit.time} - ${commit.message}`),
@@ -41,13 +42,13 @@ async function main() {
           }
           break;
 
-        case "List groups and commits before sending to AI":
+        case ACTIONS.PREVIEW:
           displayInfo("Following is the list of commits/grouped commits:");
           displayCommits(groupedCommits, true);
           displayCommits(remainingCommits);
           break;
 
-        case "Send to AI":
+        case ACTIONS.PROCESS_AI:
           const tasks = await processCommits(groupedCommits, remainingCommits);
           displayInfo("Following is the list of tasks:");
           console.log(tasks);
@@ -68,12 +69,12 @@ async function main() {
           continueRunning = false;
           break;
 
-        case "Reset grouping":
+        case ACTIONS.RESET:
           groupedCommits.length = 0;
           remainingCommits = [...commits];
           break;
 
-        case "Exit":
+        case ACTIONS.EXIT:
           displayInfo("Exiting...");
           continueRunning = false;
           break;

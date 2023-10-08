@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import DatePrompt from "inquirer-date-prompt";
+import { ACTIONS } from "./constants.js";
 
 // Register inquirer date prompt
 inquirer.registerPrompt("date", DatePrompt);
@@ -47,13 +48,7 @@ export const getNextAction = async () => {
       type: "list",
       name: "nextAction",
       message: "What would you like to do next?",
-      choices: [
-        "Continue grouping",
-        "List groups and commits before sending to AI",
-        "Send to AI",
-        "Reset grouping",
-        "Exit",
-      ],
+      choices: Object.values(ACTIONS),
     },
   ]);
 };
