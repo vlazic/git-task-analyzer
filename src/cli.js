@@ -3,10 +3,17 @@ import { Command } from "commander";
 const program = new Command();
 
 program
-  .option("-u, --user <user>", "Specify user for commit analysis")
-  .option("-r, --repo <path>", "Specify repository path")
   .option(
-    "--sort <order>",
+    "-u, --user <user>",
+    "Specify user for commit analysis. If not provided, commits from all authors are considered.",
+  )
+
+  .option(
+    "-r, --repo <path>",
+    "Specify repository path. Defaults to the current directory.",
+  )
+  .option(
+    "-s, --sort <order>",
     "Sort results in ascending or descending order (asc/desc). Default is asc.",
   )
   .option(

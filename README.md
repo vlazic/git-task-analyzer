@@ -39,17 +39,43 @@ To get started with `git-task-analyzer`, you need to have Node.js and npm instal
 To run the `git-task-analyzer`:
 
 ```bash
-git-task-analyzer -u <user> -r <repo-path> [--sort <order>] [--debug]
+git-task-analyzer [options]
 ```
 
-### Options:
+### Options
 
-- `-u, --user <user>`: Specify the user for commit analysis. If not provided, the current user will be used.
-- `-r, --repo <path>`: Specify the repository path. Defaults to the current directory.
-- `--sort <order>`: Sort results in ascending or descending order (`asc`/`desc`). The default is ascending.
+- `-u, --user <user>`: Specify the user for commit analysis. If not provided, commits from all authors will be considered.
+
+- `-r, --repo <path>`: Specify the repository path. If not provided, the tool will analyze the repository in the current directory.
+
+- `-s, --sort <order>`: Sort results in ascending (`asc`) or descending (`desc`) order. By default, results are sorted in ascending order.
+
+- `-o, --output <file>`: Specify the file where tasks should be saved. If this option is not provided, tasks will be displayed on the screen.
+
+- `-e, --exclude <files>`: Exclude specified files from the analysis. Provide a comma-separated list of files or patterns, e.g. `'package-lock.json,yarn.lock'`. By default, typical lock files and other common noise files like `.DS_Store`, `*.log`, etc., are excluded.
+
 - `--debug`: Display debug logs.
 
-### Workflow:
+### Sample Usage
+
+- Analyze commits from user "john.doe" in the repository located at `./my-project`, and sort the results in descending order:
+
+  ```bash
+  git-task-analyzer --user john.doe --repo ./my-project --sort desc
+  ```
+
+- Analyze commits in the repository located at `./my-project`, save the results to `tasks.json`, and exclude `yarn.lock` and `package-lock.json`:
+
+  ```bash
+  git-task-analyzer -r ./my-project -o tasks.json --exclude yarn.lock,package-lock.json
+  ```
+
+- Analyze commits from the repository in the current directory and exclude `*.log` files:
+  ```bash
+  git-task-analyzer --exclude *.log
+  ```
+
+### Workflow
 
 1. Specify the start and end dates for the analysis.
 2. Group commits interactively or process individual ones.

@@ -1,8 +1,13 @@
 import { execSync } from "child_process";
-
+import { config } from "../config/config.js";
+import CLIOptions from "../cli.js";
 export const getUserCommits = (startDate, endDate, repoPath, user) => {
   const sinceDate = startDate.toISOString();
   const untilDate = endDate.toISOString();
+
+  const excludeFiles = CLIOptions.exclude
+    ? CLIOptions.exclude.split(",")
+    : config.excludeFiles;
 
   const args = {
     since: sinceDate,
