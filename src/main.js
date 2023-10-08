@@ -47,6 +47,11 @@ async function main() {
           displayInfo("Following is the list of commits/grouped commits:");
           displayCommits(groupedCommits, true);
           displayCommits(remainingCommits);
+          displayInfo(
+            `Total number of tasks (groups + individual): ${
+              groupedCommits.length + remainingCommits.length
+            }`,
+          );
           break;
 
         case ACTIONS.PROCESS_AI:

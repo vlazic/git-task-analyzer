@@ -18,7 +18,8 @@ export const getDateRange = async () => {
       type: "date",
       name: "startDate",
       message: "Start date of analysis:",
-      default: new Date(2023, 9, 5, 19, 0, 0), // This can be updated to the desired default value
+      default: firstDayOfMonth,
+      // default: new Date(2023, 9, 5, 19, 0, 0), // This can be updated to the desired default value
     },
     {
       type: "date",
@@ -43,6 +44,7 @@ export const getCommitsToMerge = async (remainingCommits) => {
 };
 
 export const getNextAction = async () => {
+  console.log();
   return await inquirer.prompt([
     {
       type: "list",
