@@ -21,10 +21,13 @@ export const getUserCommits = (startDate, endDate, repoPath, user) => {
     .filter((commit) => commit)
     .map((commit) => {
       const [hash, time, message] = commit.split("|");
-      const diff = execSync(
-        `git show ${hash} -- . ':(exclude)package-lock.json' --pretty=""`,
-        { cwd: repoPath },
-      ).toString();
+
+      const gitShowCommand = `git show ${hash} -- . ${excludeFiles
+        .map((file) => `':(exclude)${file}'`)
+        .join(" ")} --pretty=""`;
+
+      const diff = execSync(gitShowCommand, { cwd: repoPath }).toString();
+
       return { hash, message, time, diff };
     });
 
