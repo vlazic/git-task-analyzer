@@ -20,7 +20,6 @@ async function main() {
 
     let groupedCommits = [];
     let remainingCommits = [...commits];
-
     let continueRunning = true;
 
     while (continueRunning) {
@@ -60,9 +59,13 @@ async function main() {
             const timeDiff = completionTime - estimatedStartTime;
             return total + timeDiff;
           }, 0);
-          // display total time
-          displayInfo(`Total time: ${totalTime / 1000 / 60 / 60} hours`);
-
+          // display total time in human readable format HH:MM
+          displayInfo(
+            `Total time: ${Math.floor(totalTime / 3600000)}h ${Math.floor(
+              (totalTime % 3600000) / 60000,
+            )}m`,
+          );
+          continueRunning = false;
           break;
 
         case "Reset grouping":
@@ -73,9 +76,6 @@ async function main() {
         case "Exit":
           displayInfo("Exiting...");
           continueRunning = false;
-          break;
-
-        default:
           break;
       }
     }

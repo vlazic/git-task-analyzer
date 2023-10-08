@@ -19,7 +19,7 @@ To get started with `git-task-analyzer`, you need to have Node.js and npm instal
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-github-username/git-task-analyzer.git
+   git clone https://github.com/vlazic/git-task-analyzer.git
    cd git-task-analyzer
    ```
 
