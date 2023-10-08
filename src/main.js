@@ -1,3 +1,4 @@
+import fs from "fs";
 import { getDateRange, getCommitsToMerge, getNextAction } from "./prompt.js";
 import { processCommits } from "./processor.js";
 import {
@@ -50,8 +51,18 @@ async function main() {
 
         case ACTIONS.PROCESS_AI:
           const tasks = await processCommits(groupedCommits, remainingCommits);
-          displayInfo("Following is the list of tasks:");
-          console.log(tasks);
+
+          if (CLIOptions.output) {
+            fs.writeFileSync(
+              CLIOptions.output,
+              JSON.stringify(tasks, null, 2),
+              "utf-8",
+            );
+            displayInfo(`Tasks saved to: ${CLIOptions.output}`);
+          } else {
+            displayInfo("Following is the list of tasks:");
+            console.log(tasks);
+          }
 
           // calculate total time
           const totalTime = tasks.reduce((total, task) => {

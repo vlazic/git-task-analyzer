@@ -9,6 +9,14 @@ program
     "--sort <order>",
     "Sort results in ascending or descending order (asc/desc). Default is asc.",
   )
+  .option(
+    "-o, --output <file>",
+    "Specify output file to save tasks. If not provided, results are displayed on screen.",
+  )
+  .option(
+    "-e, --exclude <files>",
+    "Specify files to exclude separated by commas, e.g. 'package-lock.json,yarn.lock'",
+  )
   .option("--debug", "Display debug logs")
   .usage("[options] <command> [...]")
   .on("--help", () => {
