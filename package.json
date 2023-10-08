@@ -1,0 +1,23 @@
+{
+  "name": "git-task-analyzer",
+  "version": "1.0.0",
+  "description": "Analyze and breakdown git commits into insightful task timelines.",
+  "bin": {
+    "git-task-analyzer": "./src/main.js"
+  },
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "chalk": "5.3.0",
+    "commander": "11.0.0",
+    "inquirer": "9.2.11",
+    "inquirer-date-prompt": "3.0.0",
+    "openai": "4.11.1"
+  },
+  "keywords": [],
+  "author": "Vladimir Lazić <contact@vlazic.com> (https://vlazic.com/)",
+  "license": "MIT"
+}
