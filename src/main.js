@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import fs from "fs";
 import { getDateRange, getCommitsToMerge, getNextAction } from "./prompt.js";
 import { processCommits } from "./processor.js";
