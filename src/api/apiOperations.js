@@ -2,6 +2,7 @@ import OpenAI from "openai";
 
 const api = new OpenAI({
   // For the time being, we use OpenAI server. Configurations can be adjusted later.
+  // baseURL: "http://localhost:8080",
 });
 
 export const sendToAPI = async (messages) => {
